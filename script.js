@@ -3,6 +3,7 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
+            newToDo: '',
             toDoList: [
                 {
                     text: 'Fare il letto',
@@ -26,5 +27,14 @@ createApp({
                 },
             ]
         }
+    },
+    methods: {
+        addNewToDo(){
+            this.toDoList.push(this.newToDo);
+            this.newToDo = ''
+        },
+        removeFromToDo(i){
+            this.toDoList.splice(i, 1)
+        }
     }
-})
+}).mount('#app')

@@ -11,13 +11,25 @@
 
     <div id="app">
 
-        <ol>
-            <li v-for="(elem, i) in toDoList">
-                <p>
-                    {{ elem.text }}
-                </p>
+        <div class="input-style">
+            <input type="text" placeholder="Cosa devi fare?" v-model="newToDo">
+            <button @click="addNewToDo()">
+                Aggiungi alla lista
+            </button>
+        </div>
+
+        <ol v-if="toDoList.length > 0">
+            <li v-for="(elem, i) in toDoList" class="element-list" :class=" elem.done == true ? 'line-through' : '' ">
+                {{ elem.text }}
+                <button class="button-style" @click="removeFromToDo(i)" >
+                    X
+                </button>
             </li>
         </ol>
+        <p v-else>
+            Non ci sono piu task!
+        </p>
+
         
     </div>
 
