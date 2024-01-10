@@ -30,16 +30,21 @@ createApp({
     },
     methods: {
         addNewToDo(){
-            let newObj = {
-                text: this.newToDo,
-                done: false
+            if (this.newToDo.trim().length > 0) {
+                let newObj = {
+                    text: this.newToDo.trim(),
+                    done: false
+                };
+                this.toDoList.push(newObj);
+                this.newToDo = ''
             };
-            this.toDoList.push(newObj);
-            this.newToDo = ''
         },
         removeFromToDo(i){
             this.toDoList.splice(i, 1)
         },
+        invertDone(i){
+            this.toDoList[i].done = !this.toDoList[i].done
+        }
 
     }
 }).mount('#app')
